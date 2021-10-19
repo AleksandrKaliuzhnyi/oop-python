@@ -8,7 +8,12 @@
 
 class Item:
     # constructor
-    def __init__(self, name, price, quantity):
+    def __init__(self, name: str, price: float, quantity: int):
+        # Validation for the receive arguments
+        assert price >= 0, f"Price {price} is not greater or equal than zero!"
+        assert quantity >= 0, f"Quantity {quantity} is not greater or equal than zero!"
+
+        # Assign to self object
         self.name = name
         self.price = price
         self.quantity = quantity
