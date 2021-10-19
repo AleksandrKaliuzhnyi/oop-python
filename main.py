@@ -53,11 +53,25 @@ class Item:
             return False
 
     def __repr__(self):
-        return f"Item('{self.name}', {self.price}, {self.quantity}')"
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity}')"
 
 
-# Item = cls
-Item.instantiate_fom_csv()
+class Phone(Item):
+    # constructor
+    def __init__(self, name: str, price: float, quantity: int, broken_phones=0):
+        # Call to super function to have access to all attributes / methods
+        super().__init__(
+            name, price, quantity
+        )
+
+        # Validation for the receive arguments
+        assert broken_phones >= 0, f"Broken phones {broken_phones} is not greater or equal than zero!"
+
+        # Assign to self object
+        self.broken_phones = broken_phones
+
+
+phone1 = Phone("jscPhonev10", 500, 5, 1)
+
 print(Item.all)
-
-print(Item.is_integer(4))
+print(Phone.all)
